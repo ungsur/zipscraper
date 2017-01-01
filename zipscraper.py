@@ -16,8 +16,10 @@ data=soup.find_all()
 
 
 script = soup.find_all('script')
-teststring = script[3]
-temp = re.findall('google.maps.LatLng\(.+[0-9]\)',str(teststring))
-print(temp[0])
-urllink = "http://www.codigopostalde.com.ar/en/chaco/botija/"
+tempstring = str(script[3])
+templist = re.findall('\(.[0-9]+.+[0-9]\)',tempstring)
+
+latitude = float(re.split(",",templist[0])[0].strip("()"))
+longitude = float(re.split(",",templist[0])[1].strip("()"))
+
 
